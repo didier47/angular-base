@@ -1,0 +1,8 @@
+<p>listar-item works!</p>
+<div id="items">
+  <ul class="items">
+    <li *ngFor="let item of listaItems | async">
+      <span>{{item.id}}</span> {{item.descripcion}}
+    </li>
+  </ul>
+</div>
