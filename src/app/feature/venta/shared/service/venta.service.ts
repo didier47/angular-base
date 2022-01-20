@@ -1,26 +1,26 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '@core-service/http.service';
 import {environment} from 'src/environments/environment';
-import {Item} from '../model/item';
+import {Venta, VentaRespuesta} from '../model/venta';
 
 
 @Injectable()
-export class ItemService {
+export class VentaService {
 
   constructor(protected http: HttpService) {
   }
 
   public consultar() {
-    return this.http.doGet<Item[]>(`${environment.endpoint}/items`, this.http.optsName('consultar items'));
+    return this.http.doGet<Venta[]>(`${environment.endpoint}/ventas`, this.http.optsName('consultar ventas'));
   }
 
-  public guardar(item: Item) {
-    return this.http.doPost<Item, boolean>(`${environment.endpoint}/items`, item,
-      this.http.optsName('crear/actualizar items'));
+  public guardar(venta: Venta) {
+    return this.http.doPost<Venta, VentaRespuesta>(`${environment.endpoint}/ventas`, venta,
+      this.http.optsName('crear/actualizar ventas'));
   }
 
-  public eliminar(item: Item) {
-    return this.http.doDelete<boolean>(`${environment.endpoint}/items/${item.id}`,
-      this.http.optsName('eliminar items'));
+  public eliminar(venta: Venta) {
+    return this.http.doDelete<boolean>(`${environment.endpoint}/ventas/${venta.id}`,
+      this.http.optsName('eliminar ventas'));
   }
 }

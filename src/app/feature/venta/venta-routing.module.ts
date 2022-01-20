@@ -1,27 +1,22 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {CrearItemComponent} from './components/crear-item/crear-item.component';
-import {ListarItemComponent} from './components/listar-item/listar-item.component';
-import {BorrarItemComponent} from './components/borrar-item/borrar-item.component';
-import {ItemComponent} from './components/item/item.component';
+import {CrearVentaComponent} from './components/crear-venta/crear-venta.component';
+import {ListarVentaComponent} from './components/listar-venta/listar-venta.component';
+import {VentaComponent} from './components/venta/venta.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ItemComponent,
+    component: VentaComponent,
     children: [
       {
         path: 'crear',
-        component: CrearItemComponent
+        component: CrearVentaComponent
       },
       {
         path: 'listar',
-        component: ListarItemComponent
-      },
-      {
-        path: 'borrar',
-        component: BorrarItemComponent
+        component: ListarVentaComponent
       }
     ]
   }
@@ -31,5 +26,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ItemRoutingModule {
+export class VentaRoutingModule {
 }

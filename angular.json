@@ -6,7 +6,9 @@
     "app-base": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {  "style": "sass"}
+        "@schematics/angular:component": {
+          "style": "sass"
+        }
       },
       "root": "",
       "sourceRoot": "src",
@@ -25,8 +27,8 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [ 
-              "src/styles.sass"          
+            "styles": [
+              "src/styles.sass"
             ],
             "scripts": []
           },
@@ -56,7 +58,6 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb"
                 }
-
               ]
             }
           }
@@ -66,7 +67,6 @@
           "options": {
             "browserTarget": "app-base:build",
             "proxyConfig": "proxy.conf.json"
-
           },
           "configurations": {
             "production": {
@@ -92,7 +92,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.sass" 
+              "src/styles.sass"
             ],
             "scripts": []
           }
@@ -123,6 +123,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "app-base"
 }

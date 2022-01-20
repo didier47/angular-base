@@ -1,22 +1,22 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
-import { CrearItemComponent } from './crear-item.component';
+import { CrearRepartidorComponent } from './crear-repartidor.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ItemService } from '../../shared/service/item.service';
+import { RepartidorService } from '../../shared/service/repartidor.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-describe('CrearItemComponent', () => {
-  let component: CrearItemComponent;
-  let fixture: ComponentFixture<CrearItemComponent>;
-  let itemService: ItemService;
+describe('CrearRepartidorComponent', () => {
+  let component: CrearRepartidorComponent;
+  let fixture: ComponentFixture<CrearRepartidorComponent>;
+  let repartidorService: RepartidorService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CrearItemComponent ],
+      declarations: [ CrearRepartidorComponent ],
       imports: [
         CommonModule,
         HttpClientModule,
@@ -24,16 +24,16 @@ describe('CrearItemComponent', () => {
         ReactiveFormsModule,
         FormsModule
       ],
-      providers: [ItemService, HttpService],
+      providers: [RepartidorService, HttpService],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CrearItemComponent);
+    fixture = TestBed.createComponent(CrearRepartidorComponent);
     component = fixture.componentInstance;
-    itemService = TestBed.inject(ItemService);
-    spyOn(itemService, 'guardar').and.returnValue(
+    repartidorService = TestBed.inject(RepartidorService);
+    spyOn(repartidorService, 'guardar').and.returnValue(
       of(true)
     );
     fixture.detectChanges();
@@ -44,16 +44,16 @@ describe('CrearItemComponent', () => {
   });
 
   it('formulario es invalido cuando esta vacio', () => {
-    expect(component.itemForm.valid).toBeFalsy();
+    expect(component.repartidorForm.valid).toBeFalsy();
   });
 
-  it('Registrando item', () => {
-    expect(component.itemForm.valid).toBeFalsy();
-    component.itemForm.controls.id.setValue('001');
-    component.itemForm.controls.descripcion.setValue('Item test');
-    expect(component.itemForm.valid).toBeTruthy();
+  it('Registrando repartidor', () => {
+    expect(component.repartidorForm.valid).toBeFalsy();
+    component.repartidorForm.controls.id.setValue('001');
+    component.repartidorForm.controls.descripcion.setValue('Repartidor test');
+    expect(component.repartidorForm.valid).toBeTruthy();
 
-    component.cerar();
+    component.cerrar();
 
     // Aca validamos el resultado esperado al enviar la petición
     // TODO adicionar expect

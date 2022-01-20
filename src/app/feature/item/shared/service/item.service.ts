@@ -1,25 +1,26 @@
-import { Injectable } from '@angular/core';
-import { HttpService } from '@core-service/http.service';
-import { environment } from 'src/environments/environment';
-import { Producto } from '@producto/shared/model/producto';
+import {Injectable} from '@angular/core';
+import {HttpService} from '@core-service/http.service';
+import {environment} from 'src/environments/environment';
+import {Item, ItemRespuesta} from '../model/item';
 
 
 @Injectable()
-export class ProductoService {
+export class ItemService {
 
-  constructor(protected http: HttpService) {}
+  constructor(protected http: HttpService) {
+  }
 
   public consultar() {
-    return this.http.doGet<Producto[]>(`${environment.endpoint}/tiposFamilia`, this.http.optsName('consultar productos'));
+    return this.http.doGet<Item[]>(`${environment.endpoint}/items`, this.http.optsName('consultar items'));
   }
 
-  public guardar(producto: Producto) {
-    return this.http.doPost<Producto, boolean>(`${environment.endpoint}/productos`, producto,
-                                                this.http.optsName('crear/actualizar productos'));
+  public guardar(item: Item) {
+    return this.http.doPost<Item, ItemRespuesta>(`${environment.endpoint}/items`, item,
+      this.http.optsName('crear/actualizar items'));
   }
 
-  public eliminar(producto: Producto) {
-    return this.http.doDelete<boolean>(`${environment.endpoint}/productos/${producto.id}`,
-                                                 this.http.optsName('eliminar productos'));
+  public eliminar(item: Item) {
+    return this.http.doDelete<boolean>(`${environment.endpoint}/items/${item.id}`,
+      this.http.optsName('eliminar items'));
   }
 }

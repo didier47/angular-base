@@ -1,27 +1,22 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { CrearProductoComponent } from './components/crear-producto/crear-producto.component';
-import { ListarProductoComponent } from './components/listar-producto/listar-producto.component';
-import { BorrarProductoComponent } from './components/borrar-producto/borrar-producto.component';
-import { ProductoComponent } from './components/producto/producto.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {CrearItemComponent} from './components/crear-item/crear-item.component';
+import {ListarItemComponent} from './components/listar-item/listar-item.component';
+import {ItemComponent} from './components/item/item.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ProductoComponent,
+    component: ItemComponent,
     children: [
       {
         path: 'crear',
-        component: CrearProductoComponent
+        component: CrearItemComponent
       },
       {
         path: 'listar',
-        component: ListarProductoComponent
-      },
-      {
-        path: 'borrar',
-        component: BorrarProductoComponent
+        component: ListarItemComponent
       }
     ]
   }
@@ -31,4 +26,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ProductoRoutingModule { }
+export class ItemRoutingModule {
+}

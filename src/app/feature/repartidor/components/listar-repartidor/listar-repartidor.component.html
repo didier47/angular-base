@@ -1,8 +1,28 @@
-<p>listar-item works!</p>
-<div id="items">
-  <ul class="items">
-    <li *ngFor="let item of listaItems | async">
-      <span>{{item.id}}</span> {{item.descripcion}}
-    </li>
-  </ul>
+<div class="containt mt-4 col-sm-10">
+  <div class="card bg-gray text-black">
+    <div class="card-body">
+      <table class="table table-striped table-hover">
+        <caption>Tabla de repartidores</caption>
+        <thead>
+        <tr>
+          <th scope="col">Identificación</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let repartidor of listaRepartidores">
+          <td>{{ repartidor.identificacion }}</td>
+          <td>{{ repartidor.nombres }}</td>
+          <td>{{ repartidor.apellidos }}</td>
+          <td>{{ repartidor.telefono }}</td>
+          <td><em id="borrar-{{repartidor.id}}" class="bi bi-trash-fill btn-borrar"
+                  (click)="eliminarRepartidor(repartidor)"></em></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

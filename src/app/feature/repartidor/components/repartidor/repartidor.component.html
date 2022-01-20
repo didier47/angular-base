@@ -1,8 +1,16 @@
-<nav>
-  <a id="linkItem" routerLink="./" routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }">Item</a>
-  <a id="linkCrearItem" routerLink="./crear" routerLinkActive="active">Crear item</a>
-  <a id="linkBorrarItem" routerLink="./borrar" routerLinkActive="active">Borrar item</a>
-  <a id="linkListarItem" routerLink="./listar" routerLinkActive="active">listar item</a>
-</nav>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" id="linkCrearRepartidor" routerLink="./crear" routerLinkActive="active">
+      <em class="bi bi-receipt-cutoff me-1"></em>
+      Crear repartidor
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" id="linkListarRepartidor" routerLink="./listar" routerLinkActive="active">
+      <em class="bi bi-list-check me-1"></em>
+      Listar repartidores
+    </a>
+  </li>
+</ul>
+
 <router-outlet></router-outlet>

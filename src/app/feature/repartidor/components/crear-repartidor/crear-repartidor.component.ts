@@ -1,32 +1,59 @@
-import { Component, OnInit } from '@angular/core';
-import { ItemService } from '../../shared/service/item.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-
-const LONGITUD_MINIMA_PERMITIDA_TEXTO = 3;
-const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 20;
+import {Component, OnInit} from '@angular/core';
+import {RepartidorService} from '../../shared/service/repartidor.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {Repartidor} from '../../shared/model/repartidor';
+import {ToastService} from '@core-service/toast.service';
 
 @Component({
-  selector: 'app-crear-item',
-  templateUrl: './crear-item.component.html',
-  styleUrls: ['./crear-item.component.sass']
+  selector: 'app-crear-repartidor',
+  templateUrl: './crear-repartidor.component.html',
+  styleUrls: ['./crear-repartidor.component.sass']
 })
-export class CrearItemComponent implements OnInit {
-  itemForm: FormGroup;
-  constructor(protected itemServices: ItemService) { }
+export class CrearRepartidorComponent implements OnInit {
+  repartidorForm: FormGroup;
+  repartidores: Observable<Repartidor[]>;
+
+  constructor(
+    protected repartidorServices: RepartidorService,
+    protected toastService: ToastService) {
+  }
 
   ngOnInit() {
-    this.construirFormularioItem();
+    this.construirFormularioRepartidor();
+    this.consultarRepartidores();
   }
 
-  cerar() {
-    this.itemServices.guardar(this.itemForm.value);
+  crear() {
+    this.repartidorServices.guardar(this.repartidorForm.value).subscribe(
+      res => {
+        if (res.valor > 0) {
+          this.repartidorForm.reset();
+          this.showSuccess('Registro exitoso');
+        }
+      }, error => {
+        this.showDanger(error.error.mensaje);
+      });
   }
 
-  private construirFormularioItem() {
-    this.itemForm = new FormGroup({
-      id: new FormControl('', [Validators.required]),
-      descripcion: new FormControl('', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO),
-                                                             Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)])
+  consultarRepartidores() {
+    this.repartidores = this.repartidorServices.consultar();
+  }
+
+  showSuccess(mensaje) {
+    this.toastService.show(mensaje, {classname: 'bg-success text-light'});
+  }
+
+  showDanger(dangerTpl) {
+    this.toastService.show(dangerTpl, {classname: 'bg-danger text-light'});
+  }
+
+  private construirFormularioRepartidor() {
+    this.repartidorForm = new FormGroup({
+      identificacion: new FormControl('', [Validators.required]),
+      nombres: new FormControl('', [Validators.required]),
+      apellidos: new FormControl('', [Validators.required]),
+      telefono: new FormControl('', [Validators.required]),
     });
   }
 

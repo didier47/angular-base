@@ -1,13 +1,19 @@
-export class Item {
-    id: number;
-    referencia: string;
-    nombre: string;
-    cantidad: number;
+export class Repartidor {
+  id: number;
+  identificacion: string;
+  nombres: string;
+  apellidos: string;
+  telefono: string;
 
-    constructor(id: number, referencia: string, nombre: string, cantidad: number) {
-        this.id = id;
-        this.referencia = referencia;
-        this.nombre = nombre;
-        this.cantidad = cantidad;
-    }
+  constructor(id: number, identificacion: string, nombres: string, apellidos: string, telefono: string) {
+    this.id = id;
+    this.identificacion = identificacion;
+    this.nombres = nombres;
+    this.apellidos = apellidos;
+    this.telefono = telefono;
+  }
+}
+
+export interface RepartidorRespuesta {
+  valor: number;
 }

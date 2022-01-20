@@ -1,22 +1,22 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
-import { CrearItemComponent } from './crear-item.component';
+import { CrearVentaComponent } from './crear-venta.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ItemService } from '../../shared/service/item.service';
+import { VentaService } from '../../shared/service/venta.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-describe('CrearItemComponent', () => {
-  let component: CrearItemComponent;
-  let fixture: ComponentFixture<CrearItemComponent>;
-  let itemService: ItemService;
+describe('CrearVentaComponent', () => {
+  let component: CrearVentaComponent;
+  let fixture: ComponentFixture<CrearVentaComponent>;
+  let ventaService: VentaService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CrearItemComponent ],
+      declarations: [ CrearVentaComponent ],
       imports: [
         CommonModule,
         HttpClientModule,
@@ -24,16 +24,16 @@ describe('CrearItemComponent', () => {
         ReactiveFormsModule,
         FormsModule
       ],
-      providers: [ItemService, HttpService],
+      providers: [VentaService, HttpService],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CrearItemComponent);
+    fixture = TestBed.createComponent(CrearVentaComponent);
     component = fixture.componentInstance;
-    itemService = TestBed.inject(ItemService);
-    spyOn(itemService, 'guardar').and.returnValue(
+    ventaService = TestBed.inject(VentaService);
+    spyOn(ventaService, 'guardar').and.returnValue(
       of(true)
     );
     fixture.detectChanges();
@@ -44,16 +44,16 @@ describe('CrearItemComponent', () => {
   });
 
   it('formulario es invalido cuando esta vacio', () => {
-    expect(component.itemForm.valid).toBeFalsy();
+    expect(component.ventaForm.valid).toBeFalsy();
   });
 
-  it('Registrando item', () => {
-    expect(component.itemForm.valid).toBeFalsy();
-    component.itemForm.controls.id.setValue('001');
-    component.itemForm.controls.descripcion.setValue('Item test');
-    expect(component.itemForm.valid).toBeTruthy();
+  it('Registrando venta', () => {
+    expect(component.ventaForm.valid).toBeFalsy();
+    component.ventaForm.controls.id.setValue('001');
+    component.ventaForm.controls.descripcion.setValue('Venta test');
+    expect(component.ventaForm.valid).toBeTruthy();
 
-    component.cerar();
+    component.crear();
 
     // Aca validamos el resultado esperado al enviar la petición
     // TODO adicionar expect

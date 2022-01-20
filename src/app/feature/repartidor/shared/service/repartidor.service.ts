@@ -1,26 +1,26 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '@core-service/http.service';
 import {environment} from 'src/environments/environment';
-import {Item} from '../model/item';
+import {Repartidor, RepartidorRespuesta} from '../model/repartidor';
 
 
 @Injectable()
-export class ItemService {
+export class RepartidorService {
 
   constructor(protected http: HttpService) {
   }
 
   public consultar() {
-    return this.http.doGet<Item[]>(`${environment.endpoint}/items`, this.http.optsName('consultar items'));
+    return this.http.doGet<Repartidor[]>(`${environment.endpoint}/repartidores`, this.http.optsName('consultar repartidores'));
   }
 
-  public guardar(item: Item) {
-    return this.http.doPost<Item, boolean>(`${environment.endpoint}/items`, item,
-      this.http.optsName('crear/actualizar items'));
+  public guardar(repartidor: Repartidor) {
+    return this.http.doPost<Repartidor, RepartidorRespuesta>(`${environment.endpoint}/repartidores`, repartidor,
+      this.http.optsName('crear/actualizar repartidores'));
   }
 
-  public eliminar(item: Item) {
-    return this.http.doDelete<boolean>(`${environment.endpoint}/items/${item.id}`,
-      this.http.optsName('eliminar items'));
+  public eliminar(repartidor: Repartidor) {
+    return this.http.doDelete<boolean>(`${environment.endpoint}/repartidores/${repartidor.id}`,
+      this.http.optsName('eliminar repartidores'));
   }
 }

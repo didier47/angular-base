@@ -1,26 +1,26 @@
 import {NgModule} from '@angular/core';
 
 import {SharedModule} from '@shared/shared.module';
-import {CrearItemComponent} from './components/crear-item/crear-item.component';
-import {ItemComponent} from './components/item/item.component';
-import {BorrarItemComponent} from './components/borrar-item/borrar-item.component';
-import {ListarItemComponent} from './components/listar-item/listar-item.component';
-import {ItemRoutingModule} from './item-routing.module';
-import {ItemService} from './shared/service/item.service';
+import {CrearVentaComponent} from './components/crear-venta/crear-venta.component';
+import {VentaComponent} from './components/venta/venta.component';
+import {ListarVentaComponent} from './components/listar-venta/listar-venta.component';
+import {VentaRoutingModule} from './venta-routing.module';
+import {VentaService} from './shared/service/venta.service';
+import {ItemService} from '../item/shared/service/item.service';
+import {RepartidorService} from '../repartidor/shared/service/repartidor.service';
 
 
 @NgModule({
   declarations: [
-    CrearItemComponent,
-    ListarItemComponent,
-    BorrarItemComponent,
-    ItemComponent
+    CrearVentaComponent,
+    ListarVentaComponent,
+    VentaComponent
   ],
   imports: [
-    ItemRoutingModule,
+    VentaRoutingModule,
     SharedModule
   ],
-  providers: [ItemService]
+  providers: [VentaService, RepartidorService, ItemService]
 })
-export class ItemModule {
+export class VentaModule {
 }

@@ -1,22 +1,78 @@
-<h1>Registrar Item</h1>
-<h3>Ejemplo validacion de formularios reactivos con directiva</h3>
-<form [formGroup]="itemForm" (ngSubmit)="cerar()">
-  <div class="row">
-    <div class="col-sm-2">
-      <label>Id:</label>
-    </div>
-    <div class="col-sm-4">
-      <input validar type="text" id="idItem" name="idItem" placeholder="Id item" class="form-control"
-        formControlName="id">
+<div class="container mt-4 col-sm-6">
+  <div class="card bg-gray text-black">
+    <div class="card-body">
+      <form [formGroup]="ventaForm">
+        <div class="mb-3">
+          <label for="referencia" class="form-label">
+            Referencia
+          </label>
+          <input validar type="text" id="referencia" name="referencia" placeholder="Referencia" class="form-control"
+                 formControlName="referencia">
+        </div>
+        <div class="mb-3">
+          <label for="fechaEntrega" class="form-label">
+            Fecha de Entrega
+          </label>
+          <input validar type="text" id="fechaEntrega" name="fechaEntrega" placeholder="Fecha de Entrega"
+                 class="form-control"
+                 formControlName="fechaEntrega">
+        </div>
+        <div class="mb-3">
+          <label for="distancia" class="form-label">
+            Distancia
+          </label>
+          <input validar type="text" id="distancia" name="distancia" placeholder="Distancia" class="form-control"
+                 formControlName="distancia">
+        </div>
+        <div class="mb-3">
+          <label for="idRepartidor" class="form-label">Repartidor</label>
+          <select validar id="idRepartidor" formControlName="idRepartidor" class="form-control select">
+            <option value="" selected disabled>Seleccione un repartidor</option>
+            <option *ngFor="let repartidor of repartidores| async" [ngValue]="repartidor.id">
+              {{repartidor.nombres}} {{repartidor.apellidos}}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <div class="form-group">
+              <label for="item" class="form-label">Item</label>
+              <select validar id="item" formControlName="item" class="form-control select">
+                <option value="" selected disabled>Seleccione un item</option>
+                <option *ngFor="let item of items| async" [ngValue]="item">
+                  {{item.nombre}} - {{item.cantidad}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="cantidad" class="form-label">
+                Cantidad
+              </label>
+              <input validar type="text" id="cantidad" name="cantidad" placeholder="Cantidad" class="form-control"
+                     formControlName="cantidad">
+            </div>
+          </div>
+        </div>
+
+        <ul class="list-group mb-3">
+          <li *ngFor="let itemCantidad of ventaItems" class="list-group-item">{{itemCantidad.nombre}}
+            - {{itemCantidad.cantidad}}</li>
+        </ul>
+
+        <button class="btn btn-secondary" (click)="agregarItemsAVenta()">Agregar Item
+        </button>
+
+        <button class="btn btn-danger ml-3" (click)="borrarItemsDeVenta()">Borrar Items
+        </button>
+
+        <button [disabled]="!ventaForm.valid" class="btn btn-primary float-sm-right" (click)="crear()">Registrar
+          Venta
+        </button>
+      </form>
+
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-2">
-      <label>Descripción:</label>
-    </div>
-    <div class="col-sm-4">
-      <input validar type="text" id="descripcionItem" name="descripcion" placeholder="Descripción item"
-        class="form-control" formControlName="descripcion">
-    </div>
-  </div>
-</form>
+</div>

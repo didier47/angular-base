@@ -1,17 +1,17 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ItemComponent } from './item.component';
+import { VentaComponent } from './venta.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('ItemComponent', () => {
-  let component: ItemComponent;
-  let fixture: ComponentFixture<ItemComponent>;
+describe('VentaComponent', () => {
+  let component: VentaComponent;
+  let fixture: ComponentFixture<VentaComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItemComponent ],
+      declarations: [ VentaComponent ],
       imports: [
         CommonModule,
         HttpClientModule,
@@ -22,7 +22,7 @@ describe('ItemComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ItemComponent);
+    fixture = TestBed.createComponent(VentaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

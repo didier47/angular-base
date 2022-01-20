@@ -1,22 +1,22 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
-import { CrearProductoComponent } from './crear-producto.component';
+import { CrearItemComponent } from './crear-item.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ProductoService } from '../../shared/service/producto.service';
+import { ItemService } from '../../shared/service/item.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-describe('CrearProductoComponent', () => {
-  let component: CrearProductoComponent;
-  let fixture: ComponentFixture<CrearProductoComponent>;
-  let productoService: ProductoService;
+describe('CrearItemComponent', () => {
+  let component: CrearItemComponent;
+  let fixture: ComponentFixture<CrearItemComponent>;
+  let itemService: ItemService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CrearProductoComponent ],
+      declarations: [ CrearItemComponent ],
       imports: [
         CommonModule,
         HttpClientModule,
@@ -24,16 +24,16 @@ describe('CrearProductoComponent', () => {
         ReactiveFormsModule,
         FormsModule
       ],
-      providers: [ProductoService, HttpService],
+      providers: [ItemService, HttpService],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CrearProductoComponent);
+    fixture = TestBed.createComponent(CrearItemComponent);
     component = fixture.componentInstance;
-    productoService = TestBed.inject(ProductoService);
-    spyOn(productoService, 'guardar').and.returnValue(
+    itemService = TestBed.inject(ItemService);
+    spyOn(itemService, 'guardar').and.returnValue(
       of(true)
     );
     fixture.detectChanges();
@@ -44,14 +44,14 @@ describe('CrearProductoComponent', () => {
   });
 
   it('formulario es invalido cuando esta vacio', () => {
-    expect(component.productoForm.valid).toBeFalsy();
+    expect(component.itemForm.valid).toBeFalsy();
   });
 
-  it('Registrando producto', () => {
-    expect(component.productoForm.valid).toBeFalsy();
-    component.productoForm.controls.id.setValue('001');
-    component.productoForm.controls.descripcion.setValue('Producto test');
-    expect(component.productoForm.valid).toBeTruthy();
+  it('Registrando item', () => {
+    expect(component.itemForm.valid).toBeFalsy();
+    component.itemForm.controls.id.setValue('001');
+    component.itemForm.controls.descripcion.setValue('Item test');
+    expect(component.itemForm.valid).toBeTruthy();
 
     component.cerar();
 

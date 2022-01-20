@@ -1,46 +1,46 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
-import { ListarItemComponent } from './listar-item.component';
+import { ListarRepartidorComponent } from './listar-repartidor.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ItemService } from '../../shared/service/item.service';
-import { Item } from '../../shared/model/item';
+import { RepartidorService } from '../../shared/service/repartidor.service';
+import { Repartidor } from '../../shared/model/repartidor';
 import { HttpService } from 'src/app/core/services/http.service';
 
-describe('ListarItemComponent', () => {
-  let component: ListarItemComponent;
-  let fixture: ComponentFixture<ListarItemComponent>;
-  let itemService: ItemService;
-  const listaItems: Item[] = [new Item(1, 'referencia', 'nombre', 20), new Item(2, 'referenciados', 'nombredos', 10)];
+describe('ListarRepartidorComponent', () => {
+  let component: ListarRepartidorComponent;
+  let fixture: ComponentFixture<ListarRepartidorComponent>;
+  let repartidorService: RepartidorService;
+  const listaRepartidores: Repartidor[] = [new Repartidor(1, 'referencia', 'nombre', 20), new Repartidor(2, 'referenciados', 'nombredos', 10)];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ListarItemComponent],
+      declarations: [ListarRepartidorComponent],
       imports: [
         CommonModule,
         HttpClientModule,
         RouterTestingModule
       ],
-      providers: [ItemService, HttpService]
+      providers: [RepartidorService, HttpService]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListarItemComponent);
+    fixture = TestBed.createComponent(ListarRepartidorComponent);
     component = fixture.componentInstance;
-    itemService = TestBed.inject(ItemService);
-    spyOn(itemService, 'consultar').and.returnValue(
-      of(listaItems)
+    repartidorService = TestBed.inject(RepartidorService);
+    spyOn(repartidorService, 'consultar').and.returnValue(
+      of(listaRepartidores)
     );
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    component.listaItems.subscribe(resultado => {
+    component.listaRepartidores.subscribe(resultado => {
       expect(2).toBe(resultado.length);
   });
 });

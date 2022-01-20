@@ -4,58 +4,58 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {environment} from 'src/environments/environment';
 import {HttpService} from '@core-service/http.service';
 import {HttpResponse} from '@angular/common/http';
-import {Item} from '../model/item';
-import {ItemService} from './item.service';
+import {Repartidor} from '../model/repartidor';
+import {RepartidorService} from './repartidor.service';
 
-describe('ItemService', () => {
+describe('RepartidorService', () => {
   let httpMock: HttpTestingController;
-  let service: ItemService;
-  const apiEndpointItemConsulta = `${environment.endpoint}/tiposFamilia`;
-  const apiEndpointItems = `${environment.endpoint}/items`;
+  let service: RepartidorService;
+  const apiEndpointRepartidorConsulta = `${environment.endpoint}/tiposFamilia`;
+  const apiEndpointRepartidores = `${environment.endpoint}/repartidores`;
 
   beforeEach(() => {
     const injector = TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [ItemService, HttpService]
+      providers: [RepartidorService, HttpService]
     });
     httpMock = injector.inject(HttpTestingController);
-    service = TestBed.inject(ItemService);
+    service = TestBed.inject(RepartidorService);
   });
 
   it('should be created', () => {
-    const productService: ItemService = TestBed.inject(ItemService);
+    const productService: RepartidorService = TestBed.inject(RepartidorService);
     expect(productService).toBeTruthy();
   });
 
-  it('deberia listar items', () => {
-    const dummyItems = [
-      new Item(1, 'Item 1', 'Item', 20), new Item(2, 'Item 2', 'Item nombre 2', 20)
+  it('deberia listar repartidores', () => {
+    const dummyRepartidores = [
+      new Repartidor(1, 'Repartidor 1', 'Repartidor', 20), new Repartidor(2, 'Repartidor 2', 'Repartidor nombre 2', 20)
     ];
-    service.consultar().subscribe(items => {
-      expect(items.length).toBe(2);
-      expect(items).toEqual(dummyItems);
+    service.consultar().subscribe(repartidores => {
+      expect(repartidores.length).toBe(2);
+      expect(repartidores).toEqual(dummyRepartidores);
     });
-    const req = httpMock.expectOne(apiEndpointItemConsulta);
+    const req = httpMock.expectOne(apiEndpointRepartidorConsulta);
     expect(req.request.method).toBe('GET');
-    req.flush(dummyItems);
+    req.flush(dummyRepartidores);
   });
 
-  it('deberia crear un item', () => {
-    const dummyItem = new Item(2, 'Item 2', 'Item nombre 2', 20);
-    service.guardar(dummyItem).subscribe((respuesta) => {
+  it('deberia crear un repartidor', () => {
+    const dummyRepartidor = new Repartidor(2, 'Repartidor 2', 'Repartidor nombre 2', 20);
+    service.guardar(dummyRepartidor).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
-    const req = httpMock.expectOne(apiEndpointItems);
+    const req = httpMock.expectOne(apiEndpointRepartidores);
     expect(req.request.method).toBe('POST');
     req.event(new HttpResponse<boolean>({body: true}));
   });
 
-  it('deberia eliminar un item', () => {
-    const dummyItem = new Item(2, 'Item 2', 'Item nombre 2', 20);
-    service.eliminar(dummyItem).subscribe((respuesta) => {
+  it('deberia eliminar un repartidor', () => {
+    const dummyRepartidor = new Repartidor(2, 'Repartidor 2', 'Repartidor nombre 2', 20);
+    service.eliminar(dummyRepartidor).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
-    const req = httpMock.expectOne(`${apiEndpointItems}/1`);
+    const req = httpMock.expectOne(`${apiEndpointRepartidores}/1`);
     expect(req.request.method).toBe('DELETE');
     req.event(new HttpResponse<boolean>({body: true}));
   });

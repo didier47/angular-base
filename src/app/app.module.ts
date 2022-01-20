@@ -1,14 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from '@home/home.component';
-import { ProductoModule } from '@producto/producto.module';
-import { CoreModule } from '@core/core.module';
-import { CookieService } from 'ngx-cookie-service';
-
-
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {HomeComponent} from '@home/home.component';
+import {CoreModule} from '@core/core.module';
+import {CookieService} from 'ngx-cookie-service';
+import {SharedModule} from '@shared/shared.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -19,11 +18,13 @@ import { CookieService } from 'ngx-cookie-service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ProductoModule,
-    CoreModule
+    CoreModule,
+    SharedModule,
+    NgbModule
   ],
   providers: [CookieService],
-    bootstrap: [AppComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {
+}

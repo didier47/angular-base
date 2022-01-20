@@ -1,13 +1,24 @@
-export class Item {
-    id: number;
-    referencia: string;
-    nombre: string;
-    cantidad: number;
+import {Repartidor} from '../../../repartidor/shared/model/repartidor';
+import {Item} from '../../../item/shared/model/item';
 
-    constructor(id: number, referencia: string, nombre: string, cantidad: number) {
-        this.id = id;
-        this.referencia = referencia;
-        this.nombre = nombre;
-        this.cantidad = cantidad;
-    }
+export class Venta {
+  id: number;
+  referencia: string;
+  fechaEntrega: string;
+  distancia: number;
+  repartidor: Repartidor;
+  items: Item[];
+
+  constructor(id: number, referencia: string, fechaEntrega: string, distancia: number, repartidor: Repartidor, items: Item[]) {
+    this.id = id;
+    this.referencia = referencia;
+    this.fechaEntrega = fechaEntrega;
+    this.distancia = distancia;
+    this.repartidor = repartidor;
+    this.items = items;
+  }
+}
+
+export interface VentaRespuesta {
+  valor: number;
 }

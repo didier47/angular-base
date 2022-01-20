@@ -1,32 +1,50 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductoService } from '../../shared/service/producto.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-
-const LONGITUD_MINIMA_PERMITIDA_TEXTO = 3;
-const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 20;
+import {Component, OnInit} from '@angular/core';
+import {ItemService} from '../../shared/service/item.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ToastService} from '@core-service/toast.service';
 
 @Component({
-  selector: 'app-crear-producto',
-  templateUrl: './crear-producto.component.html',
-  styleUrls: ['./crear-producto.component.sass']
+  selector: 'app-crear-item',
+  templateUrl: './crear-item.component.html',
+  styleUrls: ['./crear-item.component.sass']
 })
-export class CrearProductoComponent implements OnInit {
-  productoForm: FormGroup;
-  constructor(protected productoServices: ProductoService) { }
+export class CrearItemComponent implements OnInit {
+  itemForm: FormGroup;
+
+  constructor(
+    protected itemServices: ItemService,
+    protected toastService: ToastService) {
+  }
 
   ngOnInit() {
-    this.construirFormularioProducto();
+    this.construirFormularioItem();
   }
 
-  cerar() {
-    this.productoServices.guardar(this.productoForm.value);
+  crear() {
+    this.itemServices.guardar(this.itemForm.value).subscribe(
+      res => {
+        if (res.valor > 0) {
+          this.itemForm.reset();
+          this.showSuccess('Registro exitoso');
+        }
+      }, error => {
+        this.showDanger(error.error.mensaje);
+      });
   }
 
-  private construirFormularioProducto() {
-    this.productoForm = new FormGroup({
-      id: new FormControl('', [Validators.required]),
-      descripcion: new FormControl('', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO),
-                                                             Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)])
+  showSuccess(mensaje) {
+    this.toastService.show(mensaje, {classname: 'bg-success text-light'});
+  }
+
+  showDanger(dangerTpl) {
+    this.toastService.show(dangerTpl, {classname: 'bg-danger text-light'});
+  }
+
+  private construirFormularioItem() {
+    this.itemForm = new FormGroup({
+      referencia: new FormControl('', [Validators.required]),
+      nombre: new FormControl('', [Validators.required]),
+      cantidad: new FormControl('', [Validators.required])
     });
   }
 

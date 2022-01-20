@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 
 @Component({
-  selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.sass']
+  selector: 'app-repartidor',
+  templateUrl: './repartidor.component.html',
+  styleUrls: ['./repartidor.component.sass']
 })
-export class ItemComponent implements OnInit {
+export class RepartidorComponent implements OnInit {
 
   constructor() { }
 

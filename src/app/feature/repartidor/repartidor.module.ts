@@ -1,26 +1,24 @@
 import {NgModule} from '@angular/core';
 
 import {SharedModule} from '@shared/shared.module';
-import {CrearItemComponent} from './components/crear-item/crear-item.component';
-import {ItemComponent} from './components/item/item.component';
-import {BorrarItemComponent} from './components/borrar-item/borrar-item.component';
-import {ListarItemComponent} from './components/listar-item/listar-item.component';
-import {ItemRoutingModule} from './item-routing.module';
-import {ItemService} from './shared/service/item.service';
+import {CrearRepartidorComponent} from './components/crear-repartidor/crear-repartidor.component';
+import {RepartidorComponent} from './components/repartidor/repartidor.component';
+import {ListarRepartidorComponent} from './components/listar-repartidor/listar-repartidor.component';
+import {RepartidorRoutingModule} from './repartidor-routing.module';
+import {RepartidorService} from './shared/service/repartidor.service';
 
 
 @NgModule({
   declarations: [
-    CrearItemComponent,
-    ListarItemComponent,
-    BorrarItemComponent,
-    ItemComponent
+    CrearRepartidorComponent,
+    ListarRepartidorComponent,
+    RepartidorComponent
   ],
   imports: [
-    ItemRoutingModule,
+    RepartidorRoutingModule,
     SharedModule
   ],
-  providers: [ItemService]
+  providers: [RepartidorService]
 })
-export class ItemModule {
+export class RepartidorModule {
 }

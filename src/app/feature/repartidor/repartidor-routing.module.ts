@@ -1,27 +1,22 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {CrearItemComponent} from './components/crear-item/crear-item.component';
-import {ListarItemComponent} from './components/listar-item/listar-item.component';
-import {BorrarItemComponent} from './components/borrar-item/borrar-item.component';
-import {ItemComponent} from './components/item/item.component';
+import {CrearRepartidorComponent} from './components/crear-repartidor/crear-repartidor.component';
+import {ListarRepartidorComponent} from './components/listar-repartidor/listar-repartidor.component';
+import {RepartidorComponent} from './components/repartidor/repartidor.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ItemComponent,
+    component: RepartidorComponent,
     children: [
       {
         path: 'crear',
-        component: CrearItemComponent
+        component: CrearRepartidorComponent
       },
       {
         path: 'listar',
-        component: ListarItemComponent
-      },
-      {
-        path: 'borrar',
-        component: BorrarItemComponent
+        component: ListarRepartidorComponent
       }
     ]
   }
@@ -31,5 +26,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ItemRoutingModule {
+export class RepartidorRoutingModule {
 }

@@ -1,25 +1,24 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import { ProductoRoutingModule } from '@producto/producto-routing.module';
-import { BorrarProductoComponent } from '@producto/components/borrar-producto/borrar-producto.component';
-import { ListarProductoComponent } from '@producto/components/listar-producto/listar-producto.component';
-import { CrearProductoComponent } from '@producto/components/crear-producto/crear-producto.component';
-import { ProductoComponent } from '@producto/components/producto/producto.component';
-import { SharedModule } from '@shared/shared.module';
-import { ProductoService } from '@producto/shared/service/producto.service';
+import {SharedModule} from '@shared/shared.module';
+import {CrearItemComponent} from './components/crear-item/crear-item.component';
+import {ItemComponent} from './components/item/item.component';
+import {ListarItemComponent} from './components/listar-item/listar-item.component';
+import {ItemRoutingModule} from './item-routing.module';
+import {ItemService} from './shared/service/item.service';
 
 
 @NgModule({
   declarations: [
-    CrearProductoComponent,
-    ListarProductoComponent,
-    BorrarProductoComponent,
-    ProductoComponent
+    CrearItemComponent,
+    ListarItemComponent,
+    ItemComponent
   ],
   imports: [
-    ProductoRoutingModule,
+    ItemRoutingModule,
     SharedModule
   ],
-  providers: [ProductoService]
+  providers: [ItemService]
 })
-export class ProductoModule { }
+export class ItemModule {
+}
