@@ -60,13 +60,14 @@ describe('CrearRepartidorComponent', () => {
 
   it('Registrando repartidor', () => {
     expect(component.repartidorForm.valid).toBeFalsy();
-    component.repartidorForm.controls.referencia.setValue(1);
-    component.repartidorForm.controls.nombre.setValue('Repartidor test');
-    component.repartidorForm.controls.cantidad.setValue(20);
+    component.repartidorForm.controls.identificacion.setValue('123123444');
+    component.repartidorForm.controls.nombres.setValue('Repartidor test');
+    component.repartidorForm.controls.apellidos.setValue('Apellidos');
+    component.repartidorForm.controls.telefono.setValue('12341231');
     expect(component.repartidorForm.valid).toBeTruthy();
 
     component.crear();
 
-    expect(component.repartidorForm.valid).toBeTruthy();
+    expect(component.repartidorForm.valid).toBeFalsy();
   });
 });

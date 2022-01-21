@@ -15,6 +15,8 @@ describe('CrearVentaComponent', () => {
   let component: CrearVentaComponent;
   let fixture: ComponentFixture<CrearVentaComponent>;
   let ventaService: VentaService;
+  let repartidorService: RepartidorService;
+  let itemService: ItemService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -35,8 +37,27 @@ describe('CrearVentaComponent', () => {
     fixture = TestBed.createComponent(CrearVentaComponent);
     component = fixture.componentInstance;
     ventaService = TestBed.inject(VentaService);
+    repartidorService = TestBed.inject(RepartidorService);
+    itemService = TestBed.inject(ItemService);
     spyOn(ventaService, 'guardar').and.returnValue(
       of({valor: 1})
+    );
+    spyOn(repartidorService, 'consultar').and.returnValue(
+      of(
+        [{
+          id: 1,
+          identificacion: '12345',
+          nombres: 'Nombres',
+          apellidos: 'Apellidos',
+          telefono: '12341231'
+        }]
+      )
+    );
+    spyOn(itemService, 'consultar').and.returnValue(
+      of([
+        {id: 1, referencia: 'martillo-123', nombre: 'Martillo', cantidad: 20},
+        {id: 2, referencia: 'martillo-1233', nombre: 'Martillo 2', cantidad: 10}
+      ])
     );
     spyOn(ventaService, 'consultar').and.returnValue(
       of([
@@ -77,7 +98,8 @@ describe('CrearVentaComponent', () => {
     component.ventaForm.controls.fechaEntrega.setValue('2022-01-25');
     component.ventaForm.controls.distancia.setValue(20);
     component.ventaForm.controls.idRepartidor.setValue(1);
-    component.ventaForm.controls.items.setValue([
+    component.ventaForm.controls.cantidad.setValue(2);
+    component.ventaForm.controls.item.setValue([
       {id: 1, referencia: 'martillo-123', nombre: 'Martillo', cantidad: 20},
       {id: 2, referencia: 'martillo-1233', nombre: 'Martillo 2', cantidad: 10}
     ]);
@@ -85,6 +107,6 @@ describe('CrearVentaComponent', () => {
 
     component.crear();
 
-    expect(component.ventaForm.valid).toBeTruthy();
+    expect(component.ventaForm.valid).toBeFalsy();
   });
 });

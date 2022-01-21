@@ -45,13 +45,13 @@ describe('workspace-project Repartidor', () => {
   });
 
   it('Deberia eliminar un repartidor', () => {
-    const ID_REPARTIDOR = 3;
+    const IDENTIFICACION = '106164598';
 
     page.navigateTo();
     navBar.clickBotonRepartidores();
     repartidor.clickBotonListarRepartidores();
     browser.sleep(1000);
-    repartidor.clickBotonEliminarRepartidor(ID_REPARTIDOR);
+    repartidor.clickBotonEliminarRepartidor(IDENTIFICACION);
     browser.sleep(1000);
 
     expect(toast.getNotificacion()).toEqual('Eliminado exitoso');

@@ -94,10 +94,10 @@ describe('VentaService', () => {
       ],
       20000);
     service.eliminar(dummyVenta).subscribe((respuesta) => {
-      expect(respuesta).toEqual(true);
+      expect(respuesta).toEqual(null);
     });
     const req = httpMock.expectOne(`${apiEndpointVentas}/1`);
     expect(req.request.method).toBe('DELETE');
-    req.event(new HttpResponse<null>());
+    req.event(new HttpResponse<true>());
   });
 });

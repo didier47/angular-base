@@ -22,7 +22,7 @@
           <td>{{venta.repartidor.nombres}} {{venta.repartidor.apellidos}}</td>
           <td><p *ngFor="let item of venta.items">{{item.nombre}} | Cantidad: {{item.cantidad}}</p></td>
           <td>{{venta.valorEnvio}}</td>
-          <td><em id="borrar-{{venta.id}}" class="bi bi-trash-fill btn-borrar"
+          <td><em id="borrar-{{venta.referencia}}" class="bi bi-trash-fill btn-borrar"
                   (click)="eliminarVenta(venta)"></em></td>
         </tr>
         </tbody>

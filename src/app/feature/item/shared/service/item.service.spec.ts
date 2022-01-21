@@ -54,10 +54,10 @@ describe('ItemService', () => {
   it('deberia eliminar un item', () => {
     const dummyItem = new Item(2, 'Item 2', 'Item nombre 2', 20);
     service.eliminar(dummyItem).subscribe((respuesta) => {
-      expect(respuesta).toEqual(true);
+      expect(respuesta).toEqual(null);
     });
-    const req = httpMock.expectOne(`${apiEndpointItems}/1`);
+    const req = httpMock.expectOne(`${apiEndpointItems}/2`);
     expect(req.request.method).toBe('DELETE');
-    req.event(new HttpResponse<null>());
+    req.event(new HttpResponse<true>());
   });
 });

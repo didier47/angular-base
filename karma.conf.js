@@ -14,10 +14,13 @@ module.exports = function (config) {
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
-      clearContext: false // leave Jasmine Spec Runner output visible in browser
+      clearContext: false, // leave Jasmine Spec Runner output visible in browser
+      jasmine: {
+        random: false
+      }
     },
     remapIstanbulReporter: {
-      dir : 'reports/test-results/coverage',
+      dir: 'reports/test-results/coverage',
       reports: {
         html: 'coverage',
         lcovonly: 'reports/test-results/coverage/coverage.lcov'
@@ -28,11 +31,11 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml','junit'],
+    reporters: ['progress', 'kjhtml', 'junit'],
     htmlReporter: {
       outputFile: 'reports/unit/units.html',
 
-      // Optional 
+      // Optional
       pageTitle: 'Vida - Tests Unitarios',
       subPageTitle: 'Presentacion HTML de los test unitarios',
       dir: 'reports/html/'
@@ -42,7 +45,7 @@ module.exports = function (config) {
       outputFile: 'test-results.xml',
       suite: '',
       useBrowserName: false
-   },
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

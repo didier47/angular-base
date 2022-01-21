@@ -66,6 +66,6 @@ describe('CrearItemComponent', () => {
 
     component.crear();
 
-    expect(component.itemForm.valid).toBeTruthy();
+    expect(component.itemForm.valid).toBeFalsy();
   });
 });

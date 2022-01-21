@@ -8,35 +8,28 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {VentaService} from '../../shared/service/venta.service';
 import {Venta} from '../../shared/model/venta';
 import {HttpService} from 'src/app/core/services/http.service';
-import {RepartidorService} from '../../../repartidor/shared/service/repartidor.service';
-import {ItemService} from '../../../item/shared/service/item.service';
+import {Repartidor} from '@repartidor/shared/model/repartidor';
+import {Item} from '@item/shared/model/item';
 
 describe('ListarVentaComponent', () => {
   let component: ListarVentaComponent;
   let fixture: ComponentFixture<ListarVentaComponent>;
   let ventaService: VentaService;
+  const listaRepartidores: Repartidor[] = [
+    new Repartidor(1,
+      '12345',
+      'Nombres',
+      'Apellidos',
+      '12341231')
+  ];
+  const listaItems: Item[] = [
+    new Item(1, 'martillo-123', 'Martillo', 20),
+    new Item(2, 'martillo-1232', 'Martillo', 20)
+  ];
   const listaVentas: Venta[] = [
-    new Venta(1, 'referencia', '2022-01-25', 20, {
-        id: 1,
-        identificacion: '12345',
-        nombres: 'Nombres',
-        apellidos: 'Apellidos',
-        telefono: '12341231'
-      }, [
-        {id: 1, referencia: 'martillo-123', nombre: 'Martillo', cantidad: 20},
-        {id: 2, referencia: 'martillo-1233', nombre: 'Martillo 2', cantidad: 10}
-      ],
+    new Venta(1, 'referencia', '2022-01-25', 20, listaRepartidores[0], listaItems,
       20000),
-    new Venta(2, 'referenciados', '2022-01-25', 10, {
-        id: 1,
-        identificacion: '12345',
-        nombres: 'Nombres',
-        apellidos: 'Apellidos',
-        telefono: '12341231'
-      }, [
-        {id: 1, referencia: 'martillo-123', nombre: 'Martillo', cantidad: 20},
-        {id: 2, referencia: 'martillo-1233', nombre: 'Martillo 2', cantidad: 10}
-      ],
+    new Venta(2, 'referenciados', '2022-01-25', 10, listaRepartidores[0], listaItems,
       20000)
   ];
 
@@ -48,7 +41,7 @@ describe('ListarVentaComponent', () => {
         HttpClientModule,
         RouterTestingModule
       ],
-      providers: [VentaService, RepartidorService, ItemService, HttpService]
+      providers: [VentaService, HttpService]
     })
       .compileComponents();
   }));

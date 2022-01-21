@@ -54,10 +54,10 @@ describe('RepartidorService', () => {
   it('deberia eliminar un repartidor', () => {
     const dummyRepartidor = new Repartidor(2, '10233165', 'nombresuno', 'apellidosuno', '1235646');
     service.eliminar(dummyRepartidor).subscribe((respuesta) => {
-      expect(respuesta).toEqual(true);
+      expect(respuesta).toEqual(null);
     });
-    const req = httpMock.expectOne(`${apiEndpointRepartidores}/1`);
+    const req = httpMock.expectOne(`${apiEndpointRepartidores}/2`);
     expect(req.request.method).toBe('DELETE');
-    req.event(new HttpResponse<null>());
+    req.event(new HttpResponse<true>());
   });
 });

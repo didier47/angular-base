@@ -20,8 +20,8 @@ describe('workspace-project Item', () => {
   });
 
   it('Deberia crear item', () => {
-    const REFERENCIA = 'Martillo-12333233';
-    const NOMBRE = 'Martillo Acero';
+    const REFERENCIA = 'ref-martillo-protractor';
+    const NOMBRE = 'Martillo Protractor';
     const CANTIDAD = 2;
 
     page.navigateTo();
@@ -43,13 +43,13 @@ describe('workspace-project Item', () => {
   });
 
   it('Deberia eliminar un item', () => {
-    const ID_ITEM = 4;
+    const REFERENCIA = 'ref-martillo-protractor';
 
     page.navigateTo();
     navBar.clickBotonItems();
     item.clickBotonListarItems();
     browser.sleep(1000);
-    item.clickBotonEliminarItem(ID_ITEM);
+    item.clickBotonEliminarItem(REFERENCIA);
     browser.sleep(1000);
 
     expect(toast.getNotificacion()).toEqual('Eliminado exitoso');

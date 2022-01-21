@@ -62,13 +62,14 @@
             | Cantidad: {{itemCantidad.cantidad}}</li>
         </ul>
 
-        <button class="btn btn-secondary" (click)="agregarItemsAVenta()">Agregar Item
+        <button id="btnAgregarItem" class="btn btn-secondary" (click)="agregarItemsAVenta()">Agregar Item
         </button>
 
-        <button class="btn btn-danger ml-3" (click)="borrarItemsDeVenta()">Borrar Items
+        <button id="btnBorrarItems" class="btn btn-danger ml-3" (click)="borrarItemsDeVenta()">Borrar Items
         </button>
 
-        <button [disabled]="!ventaForm.valid" class="btn btn-primary float-sm-right" (click)="crear()">Registrar
+        <button id="btnCrearVenta" [disabled]="!ventaForm.valid" class="btn btn-primary float-sm-right"
+                (click)="crear()">Registrar
           Venta
         </button>
       </form>

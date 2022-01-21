@@ -4,12 +4,15 @@ export class VentaPage {
   private linkCrearVenta = element(by.id('linkCrearVenta'));
   private linkListarVentas = element(by.id('linkListarVenta'));
   private botonCrearVenta = element(by.id('btnCrearVenta'));
+  private botonAgregarItem = element(by.id('btnAgregarItem'));
+  private botonBorrarItems = element(by.id('btnBorrarItems'));
   private referencia = element(by.id('referencia'));
   private distancia = element(by.id('distancia'));
   private fechaEntrega = element(by.id('fechaEntrega'));
   private idRepartidor = element(by.id('idRepartidor'));
-  private items = element(by.id('items'));
-  private listaVentas = element.all(by.css('app-root app-Venta app-listar-Venta table tbody tr'));
+  private item = element(by.id('item'));
+  private cantidad = element(by.id('cantidad'));
+  private listaVentas = element.all(by.css('app-root app-venta app-listar-venta table tbody tr'));
 
 
   async clickBotonCrearVentas() {
@@ -22,6 +25,14 @@ export class VentaPage {
 
   async clickBotonCrearVenta() {
     await this.botonCrearVenta.click();
+  }
+
+  async clickBotonAgregarItem() {
+    await this.botonAgregarItem.click();
+  }
+
+  async clickBotonBorrarItems() {
+    await this.botonBorrarItems.click();
   }
 
   async ingresarReferencia(referencia) {
@@ -40,8 +51,12 @@ export class VentaPage {
     await this.idRepartidor.sendKeys(idRepartidor);
   }
 
-  async ingresarListaItems(items) {
-    await this.items.sendKeys(items);
+  async ingresarListaItem(item) {
+    await this.item.sendKeys(item);
+  }
+
+  async ingresarCantidad(cantidad) {
+    await this.cantidad.sendKeys(cantidad);
   }
 
   async contarVentas() {
