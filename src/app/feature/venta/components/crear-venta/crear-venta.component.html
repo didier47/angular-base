@@ -41,7 +41,7 @@
               <select validar id="item" formControlName="item" class="form-control select">
                 <option value="" selected disabled>Seleccione un item</option>
                 <option *ngFor="let item of items| async" [ngValue]="item">
-                  {{item.nombre}} - {{item.cantidad}}
+                  {{item.nombre}} | Cantidad: {{item.cantidad}}
                 </option>
               </select>
             </div>
@@ -59,7 +59,7 @@
 
         <ul class="list-group mb-3">
           <li *ngFor="let itemCantidad of ventaItems" class="list-group-item">{{itemCantidad.nombre}}
-            - {{itemCantidad.cantidad}}</li>
+            | Cantidad: {{itemCantidad.cantidad}}</li>
         </ul>
 
         <button class="btn btn-secondary" (click)="agregarItemsAVenta()">Agregar Item
