@@ -1,19 +1,22 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {of} from 'rxjs';
 
-import { ListarRepartidorComponent } from './listar-repartidor.component';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterTestingModule } from '@angular/router/testing';
-import { RepartidorService } from '../../shared/service/repartidor.service';
-import { Repartidor } from '../../shared/model/repartidor';
-import { HttpService } from 'src/app/core/services/http.service';
+import {ListarRepartidorComponent} from './listar-repartidor.component';
+import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
+import {RepartidorService} from '../../shared/service/repartidor.service';
+import {Repartidor} from '../../shared/model/repartidor';
+import {HttpService} from 'src/app/core/services/http.service';
 
 describe('ListarRepartidorComponent', () => {
   let component: ListarRepartidorComponent;
   let fixture: ComponentFixture<ListarRepartidorComponent>;
   let repartidorService: RepartidorService;
-  const listaRepartidores: Repartidor[] = [new Repartidor(1, 'referencia', 'nombre', 20), new Repartidor(2, 'referenciados', 'nombredos', 10)];
+  const listaRepartidores: Repartidor[] = [
+    new Repartidor(1, '102654', 'nombre', 'apellido', '3013245'),
+    new Repartidor(2, '1026545', 'nombredos', 'apellidosdos', '2165465')
+  ];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -40,9 +43,16 @@ describe('ListarRepartidorComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    component.listaRepartidores.subscribe(resultado => {
-      expect(2).toBe(resultado.length);
+    expect(component.listaRepartidores.length).toBe(2);
   });
-});
+
+  it('should list repartidores', () => {
+    expect(component.listaRepartidores.length).toBe(2);
+  });
+
+  it('should delete repartidor', () => {
+    component.removerRepartidorDeLista(listaRepartidores, listaRepartidores[0]);
+    expect(component.listaRepartidores.length).toBe(1);
+  });
 
 });

@@ -1,13 +1,13 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {of} from 'rxjs';
 
-import { CrearItemComponent } from './crear-item.component';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ItemService } from '../../shared/service/item.service';
-import { HttpService } from 'src/app/core/services/http.service';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {CrearItemComponent} from './crear-item.component';
+import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
+import {ItemService} from '../../shared/service/item.service';
+import {HttpService} from 'src/app/core/services/http.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 describe('CrearItemComponent', () => {
   let component: CrearItemComponent;
@@ -16,7 +16,7 @@ describe('CrearItemComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CrearItemComponent ],
+      declarations: [CrearItemComponent],
       imports: [
         CommonModule,
         HttpClientModule,
@@ -26,7 +26,7 @@ describe('CrearItemComponent', () => {
       ],
       providers: [ItemService, HttpService],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -34,7 +34,17 @@ describe('CrearItemComponent', () => {
     component = fixture.componentInstance;
     itemService = TestBed.inject(ItemService);
     spyOn(itemService, 'guardar').and.returnValue(
-      of(true)
+      of({valor: 1})
+    );
+    spyOn(itemService, 'consultar').and.returnValue(
+      of([
+        {
+          id: 1,
+          referencia: 'martillo-123',
+          nombre: 'Martillo',
+          cantidad: 20
+        }
+      ])
     );
     fixture.detectChanges();
   });
@@ -49,13 +59,13 @@ describe('CrearItemComponent', () => {
 
   it('Registrando item', () => {
     expect(component.itemForm.valid).toBeFalsy();
-    component.itemForm.controls.id.setValue('001');
-    component.itemForm.controls.descripcion.setValue('Item test');
+    component.itemForm.controls.referencia.setValue(1);
+    component.itemForm.controls.nombre.setValue('Item test');
+    component.itemForm.controls.cantidad.setValue(20);
     expect(component.itemForm.valid).toBeTruthy();
 
-    component.cerar();
+    component.crear();
 
-    // Aca validamos el resultado esperado al enviar la petición
-    // TODO adicionar expect
+    expect(component.itemForm.valid).toBeTruthy();
   });
 });

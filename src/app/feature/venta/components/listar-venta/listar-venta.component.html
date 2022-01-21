@@ -10,6 +10,7 @@
           <th scope="col">Distancia</th>
           <th scope="col">Repartidor</th>
           <th scope="col">Items</th>
+          <th scope="col">Valor Envío</th>
           <th scope="col">Acción</th>
         </tr>
         </thead>
@@ -19,7 +20,8 @@
           <td>{{ venta.fechaEntrega }}</td>
           <td>{{ venta.distancia }}</td>
           <td>{{venta.repartidor.nombres}} {{venta.repartidor.apellidos}}</td>
-          <td>items</td>
+          <td><p *ngFor="let item of venta.items">{{item.nombre}} - {{item.cantidad}}</p></td>
+          <td>{{venta.valorEnvio}}</td>
           <td><em id="borrar-{{venta.id}}" class="bi bi-trash-fill btn-borrar"
                   (click)="eliminarVenta(venta)"></em></td>
         </tr>

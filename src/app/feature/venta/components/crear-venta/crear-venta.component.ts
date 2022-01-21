@@ -34,12 +34,18 @@ export class CrearVentaComponent implements OnInit {
   }
 
   agregarItemsAVenta() {
-    this.ventaItems.push({
+    const itemFormulario = {
       id: this.ventaForm.get('item').value.id,
       referencia: this.ventaForm.get('item').value.referencia,
       nombre: this.ventaForm.get('item').value.nombre,
       cantidad: this.ventaForm.get('cantidad').value
-    });
+    };
+    const indexItemEnVenta = this.ventaItems.findIndex(item => item.id === itemFormulario.id);
+    if (indexItemEnVenta >= 0) {
+      this.ventaItems[indexItemEnVenta] = itemFormulario;
+    } else {
+      this.ventaItems.push(itemFormulario);
+    }
     this.ventaForm.get('item').setValue({});
     this.ventaForm.get('cantidad').setValue('');
   }
@@ -55,6 +61,7 @@ export class CrearVentaComponent implements OnInit {
       res => {
         if (res.valor > 0) {
           this.ventaForm.reset();
+          this.ventaItems = [];
           this.showSuccess('Registro exitoso');
         }
       }, error => {
